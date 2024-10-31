@@ -12,7 +12,14 @@ const config = {
         autoCenter: Phaser.Scale.CENTER_BOTH,
     },
     parent: "app",
-    scene: [ GameScene ]
+    scene: [ GameScene ],
+    physics: {
+        default: "arcade",
+        arcade: {
+            gravity: { x: Math.round(Math.random()) * 20 - 10, y: Math.round(Math.random()) * 20 - 10 },
+            debug: true,
+        },
+    },
 };
 
 const game = new Phaser.Game(config);
