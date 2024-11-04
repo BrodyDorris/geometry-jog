@@ -16,7 +16,7 @@ const config = {
     physics: {
         default: "arcade",
         arcade: {
-            gravity: { x: Math.round(Math.random()) * 20 - 10, y: Math.round(Math.random()) * 20 - 10 },
+            gravity: { x: 0, y: 350},
             debug: true,
         },
     },
