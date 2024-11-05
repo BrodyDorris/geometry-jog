@@ -2,11 +2,12 @@
 import './css/style.css'
 import Phaser from 'phaser';
 import { GameScene } from './scenes/game-scene';
+import { HEIGHT, WIDTH } from './constants';
 
 /** @type {Phaser.Types.Core.GameConfig } */
 const config = {
-    width: 600,
-    height: 300,
+    width: WIDTH,
+    height: HEIGHT,
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,

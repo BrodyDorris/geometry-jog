@@ -1,4 +1,6 @@
+import { HEIGHT, WIDTH } from "../constants";
 import { Player } from "../game-objects/player";
+import { Genarator } from "../genarator";
 
 export class GameScene extends Phaser.Scene {
     constructor() {
@@ -11,13 +13,12 @@ export class GameScene extends Phaser.Scene {
     }
 
     create() {
-        this.width = this.sys.game.config.width;
-        this.height = this.sys.game.config.height;
-
         //set background color
         this.cameras.main.setBackgroundColor(0x222222);
 
-        this.player = new Player(this, this.width / 2, this. height / 2);
+        this.Genarator = new Genarator(this);
+
+        this.player = new Player(this, WIDTH / 2, HEIGHT / 2);
     }
 
     update() {
