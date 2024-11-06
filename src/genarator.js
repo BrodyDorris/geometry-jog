@@ -1,25 +1,25 @@
 import { Cloud } from "./game-objects/cloud";
 
-export class Genarator {
-    constructor(scene) {
-        this.scene = scene;
+export class Generator {
+	constructor(scene) {
+		this.scene = scene;
 
-        //call the init method after 2 seconds
-        this.scene.time.delayedCall(2000, () => this.init(), undefined, this);
-    }
+		// call the init method after 2 seconds
+		this.scene.time.delayedCall(2000, () => this.init(), undefined, this);
+	}
 
-    init() {
-        console.log("generator init");
-        this.genarateCloud();
-    }
+	init() {
+		console.log("Generator init");
+		this.generateCloud();
+	}
 
-    genarateCloud() {
-        new Cloud(this.scene);
-        this.scene.time.delayedCall(
-            Phaser.Math.Between(200,3000),
-            () => this.genarateCloud(),
-            undefined,
-            this
-        );
-    }
+	generateCloud() {
+		new Cloud(this.scene);
+		this.scene.time.delayedCall(
+			Phaser.Math.Between(2000, 3000),
+			() => this.generateCloud(),
+			undefined,
+			this
+		);
+	}
 }
