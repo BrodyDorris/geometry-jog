@@ -5,6 +5,8 @@ import { Generator } from "../genarator";
 export class GameScene extends Phaser.Scene {
 	constructor() {
 		super({ key: "game" });
+
+        this.obsticles;
 	}
 
 	preload() {
@@ -16,12 +18,26 @@ export class GameScene extends Phaser.Scene {
 		// set background color
 		this.cameras.main.setBackgroundColor(0x222222);
 
-		this.generator = new Generator(this);
+		this.obsticles = this.add.group();
+        this.generator = new Generator(this);
 
 		this.player = new Player(this, WIDTH / 2, HEIGHT / 2);
+
+        this.physics.add.collider(this.player, 
+            this.obsticles, 
+            this.hitObdtacle,
+        () => {
+            return true;
+        },
+        this
+    );
 	}
 
 	update() {
 		this.player.update();
 	}
+
+    hitObdtacle(player, obstacle) {
+    console.log("player hit");  
+    }
 }

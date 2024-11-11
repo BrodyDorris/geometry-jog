@@ -1,5 +1,6 @@
 import { WIDTH } from "../constants";
 
+
 export class Cloud extends Phaser.GameObjects.Rectangle {
 	constructor(scene) {
 		super(scene, WIDTH, Phaser.Math.Between(0, 100), 98, 32, 0xffffff, 0.5);
