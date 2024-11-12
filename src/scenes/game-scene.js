@@ -12,6 +12,13 @@ export class GameScene extends Phaser.Scene {
 	preload() {
 		// this will get called by phaser
 		// automatically when the scene loads
+
+		// load font
+		this.load.bitmapFont(
+			"arcade",
+			 "/assets/fonts/arcade.png",
+			 "/assets/fonts/arcade.xml"
+			);
 	}
 
 	create() {
