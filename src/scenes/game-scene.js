@@ -7,18 +7,22 @@ export class GameScene extends Phaser.Scene {
 		super({ key: "game" });
 
         this.obsticles;
+		this.score = 0;
 	}
 
 	preload() {
 		// this will get called by phaser
 		// automatically when the scene loads
 
+		this.score = 0;
+		this.registry.set("score", "0");
+
 		// load font
 		this.load.bitmapFont(
 			"arcade",
 			 "/assets/fonts/arcade.png",
 			 "/assets/fonts/arcade.xml"
-			);
+		);
 	}
 
 	create() {
@@ -38,6 +42,20 @@ export class GameScene extends Phaser.Scene {
         },
         this
     );
+
+	this.scoreText = this.add.bitmapText(WIDTH / 2,
+		 10,
+		"arcade",
+		this.score,
+		20
+		);
+
+		this.scoreUpdateEvent = this.time.addEvent({
+			delay: 500,
+			callback:() => this.updateScore(),
+			callbackScope: this,
+			loop: true,
+		});
 	}
 
 	update() {
@@ -48,4 +66,10 @@ export class GameScene extends Phaser.Scene {
     console.log("player hit");  
 	this.scene.start("gameover");
     }
+
+	updateScore(points = 1) {
+		this.score += points;
+		this.registry.set("score",this.score);
+		this.scoreText.setText(this.score);
+	}
 }

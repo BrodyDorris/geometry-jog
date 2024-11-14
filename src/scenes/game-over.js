@@ -11,6 +11,7 @@ export class GameOver extends Phaser.Scene {
 
         this.cameras.main.setBackgroundColor(0x111111);
 
+        this.showLine(this.registry.get("score"), 50, 30);
         this.showLine("game over!", this.centerHeight, 45);
         this.showLine("press Enter to restart",HEIGHT - 50, 10);
 
