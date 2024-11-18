@@ -1,7 +1,7 @@
 ////@ts-check
-export class Player extends Phaser.GameObjects.Rectangle {
+export class Player extends Phaser.GameObjects.Sprite {
 	constructor(gameScene, x, y) {
-		super(gameScene, x, y, 32, 32, 0x00ff00);
+		super(gameScene, x, y, "player");
 
 		// set origin to middle of rectangle
 		this.setOrigin(0.5);
@@ -41,11 +41,12 @@ export class Player extends Phaser.GameObjects.Rectangle {
 	}
 
 	jump() {
-		if (!this.body.blocked.down) {
+		if (this.body.blocked.down) {
 			// don't jump if we are not down
 			return;
 		}
 
+		this.scene.sound.play("jump");
 		this.body.setVelocityY(-350);
 		this.jumpTween.restart();
 	}

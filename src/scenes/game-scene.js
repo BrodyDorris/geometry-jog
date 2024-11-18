@@ -23,6 +23,25 @@ export class GameScene extends Phaser.Scene {
 			 "/assets/fonts/arcade.png",
 			 "/assets/fonts/arcade.xml"
 		);
+
+		this.load.audio("died", "/assets/sounds/dead.mp3");
+		this.load.audio("jump", "/assets/sounds/jump.mp3");
+		this.load.audio("collect-coin", "/assets/sounds/coin.mp3");
+		this.load.audio("music", "/assets/sounds/theme.mp3");
+		
+		this.load.spritesheet(
+			"coin", 
+			"/assets/images/coin.png",
+			{ frameWidth: 32, 
+			frameHeight: 32,
+		});
+
+		this.load.spritesheet(
+			"player", 
+			"/assets/images/player.png",
+			{ frameWidth: 32, 
+			frameHeight: 32,
+		});
 	}
 
 	create() {
@@ -30,9 +49,23 @@ export class GameScene extends Phaser.Scene {
 		this.cameras.main.setBackgroundColor(0x222222);
 
 		this.obsticles = this.add.group();
+		this.coins = this.add.group();
         this.generator = new Generator(this);
 
-		this.player = new Player(this, WIDTH / 2, HEIGHT / 2);
+		this.player = new Player(this, WIDTH / 4, HEIGHT / 2);
+
+		const coinAnim = this.anims.create({
+			key: "coin",
+			frames: this.anims.generateFrameNumbers("coin", {
+				start: 0,
+				end: 7
+			}),
+			frameRate: 8
+		});
+
+		const playerAnim = this.anims.create({
+			key: "player",
+		});
 
         this.physics.add.collider(this.player, 
             this.obsticles, 
@@ -42,6 +75,16 @@ export class GameScene extends Phaser.Scene {
         },
         this
     );
+
+	this.physics.add.overlap(
+		this.player,
+		this.coins,
+		this.hitCoin,
+		() => {
+			return true;
+		},
+		this
+	);
 
 	this.scoreText = this.add.bitmapText(WIDTH / 2,
 		 10,
@@ -56,6 +99,8 @@ export class GameScene extends Phaser.Scene {
 			callbackScope: this,
 			loop: true,
 		});
+
+		this.sound.play("music");
 	}
 
 	update() {
@@ -63,9 +108,18 @@ export class GameScene extends Phaser.Scene {
 	}
 
     hitObdtacle(player, obstacle) {
-    console.log("player hit");  
+    console.log("player hit");
+	this.sound.play("died");
 	this.scene.start("gameover");
+	
     }
+
+	hitCoin(player,coin) {
+		this.updateScore(100);
+		let playerpeed
+		coin.destroy();
+		this.sound.play("collect-coin");
+	}
 
 	updateScore(points = 1) {
 		this.score += points;
