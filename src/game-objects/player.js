@@ -41,7 +41,7 @@ export class Player extends Phaser.GameObjects.Sprite {
 	}
 
 	jump() {
-		if (this.body.blocked.down) {
+		if (!this.body.blocked.down) {
 			// don't jump if we are not down
 			return;
 		}
