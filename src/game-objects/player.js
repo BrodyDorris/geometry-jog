@@ -1,3 +1,5 @@
+import { Dust } from "./dusty.js";
+
 ////@ts-check
 export class Player extends Phaser.GameObjects.Sprite {
 	constructor(gameScene, x, y) {
@@ -37,6 +39,8 @@ export class Player extends Phaser.GameObjects.Sprite {
 			// stop spinning and go flat
 			this.jumpTween.pause();
 			this.rotation = 0;
+			new Dust(this.scene);
+			//this.rotation = this.rotation-90;
 		}
 	}
 
@@ -47,7 +51,8 @@ export class Player extends Phaser.GameObjects.Sprite {
 		}
 
 		this.scene.sound.play("jump");
-		this.body.setVelocityY(-350);
+		this.body.setVelocityY(-250);
 		this.jumpTween.restart();
 	}
+	
 }

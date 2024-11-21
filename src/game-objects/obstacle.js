@@ -4,7 +4,7 @@ export class Obstacle extends Phaser.GameObjects.Rectangle {
     constructor(scene) {
         super(scene, 
             WIDTH + 100, 
-            Phaser.Math.Between(HEIGHT - 32, HEIGHT - 100), 
+            Phaser.Math.Between(HEIGHT, 0), 
             32, 
             32,
              0xff0000

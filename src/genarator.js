@@ -11,7 +11,6 @@ export class Generator {
 	}
 
 	init() {
-		console.log("Generator init");
 		this.generateCloud();
         this.generateObstacle();
 		this.generateCoin();
@@ -27,13 +26,23 @@ export class Generator {
 		);
 	}
 
+	generateDust() {
+		new Dust(this.scene);
+		this.scene.time.delayedCall(
+			Phaser.Math.Between(2000, 3000),
+			() => this.generateDust(),
+			undefined,
+			this
+		);
+	}
+
     generateObstacle() {
 this.scene.obsticles.add(
     new Obstacle(this.scene)
 );
 
 		this.scene.time.delayedCall(
-			Phaser.Math.Between(1500, 2500),
+			Phaser.Math.Between(150, 2500),
 			() => this.generateObstacle(),
 			undefined,
 			this
@@ -44,7 +53,7 @@ this.scene.obsticles.add(
 		this.scene.coins.add(new Coin(this.scene));
 		
 				this.scene.time.delayedCall(
-					Phaser.Math.Between(5, 15),
+					Phaser.Math.Between(500, 1500),
 					() => this.generateCoin(),
 					undefined,
 					this
