@@ -1,5 +1,6 @@
 import { Cloud } from "./game-objects/cloud";
 import { Coin } from "./game-objects/coin";
+import { Dust } from "./game-objects/dusty";
 import { Obstacle } from "./game-objects/obstacle";
 
 export class Generator {

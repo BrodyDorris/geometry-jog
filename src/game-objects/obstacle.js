@@ -1,10 +1,11 @@
 import { HEIGHT, WIDTH } from "../constants";
 
-export class Obstacle extends Phaser.GameObjects.Rectangle {
+export class Obstacle extends Phaser.GameObjects.Sprite {
     constructor(scene) {
         super(scene, 
             WIDTH + 100, 
             Phaser.Math.Between(HEIGHT, 0), 
+            "enemy",
             32, 
             32,
              0xff0000
@@ -17,6 +18,7 @@ export class Obstacle extends Phaser.GameObjects.Rectangle {
             this.scene.tweens.add({
                 targets: this,
                 x: {from:WIDTH+100, to: -100},
+                angle: { from: 0, to: 360 },
                 duration: 2000,
                 onComplete: () => {
                     this.destroy();

@@ -27,7 +27,7 @@ export class GameScene extends Phaser.Scene {
 		this.load.audio("died", "/assets/sounds/dead.mp3");
 		this.load.audio("jump", "/assets/sounds/jump.mp3");
 		this.load.audio("collect-coin", "/assets/sounds/coin.mp3");
-		this.load.audio("music", "/assets/sounds/Never gonna give you up.mp3");
+		this.load.audio("music", "/assets/sounds/theme.mp3");
 		this.load.audio("WAA", "/assets/sounds/Record (online-voice-recorder.com).mp3");
 		
 		this.load.spritesheet(
@@ -40,6 +40,13 @@ export class GameScene extends Phaser.Scene {
 		this.load.spritesheet(
 			"player", 
 			"/assets/images/player.png",
+			{ frameWidth: 32, 
+			frameHeight: 32,
+		});
+
+		this.load.spritesheet(
+			"enemy", 
+			"/assets/images/enemy.png",
 			{ frameWidth: 32, 
 			frameHeight: 32,
 		});
@@ -101,7 +108,7 @@ export class GameScene extends Phaser.Scene {
 			loop: true,
 		});
 
-		//this.sound.play("music");
+		this.sound.play("music");
 		
 		this.sound.play("WAA");
 	}
